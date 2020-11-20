@@ -3,22 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Save The Hostage</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-9ZfPnbegQSumzaE7mks2IYgHoayLtuto3AS6ieArECeaR8nCfliJVuLh/GaQ1gyM" crossorigin="anonymous">
 </head>
-<body>
+<body onload="countdown();">
 
-<center>
+    
+    <center>
+<div class="container"  >
+
 <canvas width="500" height="500" id="canvas">
 
 </canvas>
+<progress  id="health" value="100" max="100"></progress>
+<div class="timebox">  
+        <input class="time" id="minutes" type="text"> :
+        <input class="time2" id="seconds" type="text"> 
+    </div> 
+</div>
+
+<div class="box">
+<button class="btn" id="replay">Reset<i ></i></button>
+<button class="btn" id="play">Play<i ></i></button>
+<button class="btn" id="reset">End</button>
+
+</div>
 </center>
-
-
-
-    <button id="knap">klik her</button>
-
-
 
     <script src="script.js"></script>
 </body>

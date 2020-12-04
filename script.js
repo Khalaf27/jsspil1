@@ -19,6 +19,44 @@ function playlose(){
 
 }
 
+
+
+function gameOver() {
+
+    let tid = mins / 60 + secs;
+    let score = 0
+
+    console.log(tid)
+
+    if (tid > 100) {
+        
+        score = 20
+        alert("Du fik 20 Points !")
+    }
+
+    else if (tid > 75) {
+
+        score = 15
+        alert("Du fik 15 Points !")
+    }
+      else if (tid > 50) {
+
+        score = 10
+        alert("Du fik 10 Points !")
+    }
+      else if (tid > 25) {
+
+        score = 5
+        alert("Du fik 5 Points !")
+    }
+      else if (tid < 5) {
+
+        score = 0
+        alert("Du fik 0 Points !")
+    }
+    console.log(score)
+}
+
 // TID 
         var mins = 2; 
         var secs = mins * 60; 
@@ -97,8 +135,8 @@ maze =
     [0,0,0,0,0,2,2,2,2,2],
     [0,2,2,2,2,2,0,5,0,4],
     [0,0,2,0,6,0,6,0,6,0],
-    [3,2,2,2,2,2,2,2,2,0],   
-    [0,0,0,0,5,0,0,5,2,7],
+    [5,2,2,2,2,2,2,2,2,0],   
+    [0,0,0,0,5,0,0,2,2,7],
     [0,2,2,2,2,2,2,2,2,0],
     [0,2,7,0,0,5,0,5,0,0],
     [0,2,0,6,0,6,0,6,0,0],
@@ -108,44 +146,41 @@ maze =
 ]
 
 let wall = 0
-wall = new Image(); 
-wall.src= 'img/box.png';
+
+kasse = new Image(); 
+kasse.src= 'img/box.png';
 
 let road = 2;
-road = new Image(); 
-road.src= 'img/sand.png';
+sand = new Image(); 
+sand.src= 'img/sand.png';
 
 
 let trap = 3
-trap = new Image(); 
-trap.src= 'img/gunman2.png';
+bot1 = new Image(); 
+bot1.src= 'img/gunman2.png';
 
 let trap2 = 5
-trap2 = new Image(); 
-trap2.src= 'img/survivor-meleeattack_knife_5.png';
+bot2 = new Image(); 
+bot2.src= 'img/survivor-meleeattack_knife_5.png';
 
 
 let trap3 = 6
-trap3 = new Image(); 
-trap3.src= 'img/survivor-meleeattack_knife_11.png';
+bot3 = new Image(); 
+bot3.src= 'img/survivor-meleeattack_knife_11.png';
 
 let trap4 = 7
-trap4 = new Image(); 
-trap4.src= 'img/survivor-meleeattack_knife_0.png';
+bot4 = new Image(); 
+bot4.src= 'img/survivor-meleeattack_knife_0.png';
 
 let finish = 4
-finish = new Image(); 
-finish.src= 'img/girl1.png';
+girl = new Image(); 
+girl.src= 'img/girl1.png';
 
 
 const ninjaMovementChar3Arr = [{y:8, x:0},{y:8, x:1},{y:8, x:2}];
-const ninjaMovementChar4Arr = [{y:3, x:0},{y:3, x:1},{y:3, x:2}];     
-const ninjaMovementChar5Arr = [{y:4, x:9},{y:4,x:8}];
 const enemyPosition = {x:0, y:0};
-const enemyLine = {x:0, y:0};
-
-
 let counter = 0;
+
 
 setInterval(()=>{
     ninjaMovementChar3();
@@ -154,7 +189,7 @@ setInterval(()=>{
 
 function ninjaMovementChar3(){
 
-    console.log(ninjaMovementChar4Arr[counter]);
+    
 
     
     maze[ninjaMovementChar3Arr[counter].y][ninjaMovementChar3Arr[counter].x] = 3;
@@ -162,7 +197,7 @@ function ninjaMovementChar3(){
  
    drawMaze();
 
-   console.log(maze);
+   
     
 
    if(counter === 2){
@@ -172,7 +207,6 @@ function ninjaMovementChar3(){
    }
 
 }
-
 
 
 /*
@@ -225,20 +259,20 @@ function walk(){
 function playsound(){
 
     let gameSound = new Audio('/sound/background-game-melody-loop.mp3');
-    gameSound.play();
+    gameSound.pause();
 
 }
 
 function playgirl(){
 
     let gameSound = new Audio('sound/weirdwarriornosieslol.mp3');
-    gameSound.play();
+    gameSound.pause();
 
 }
 function playhit(){
 
     let gameSound = new Audio('sound/hit.mp3');
-    gameSound.play();
+    gameSound.pause();
 
 }
 
@@ -262,9 +296,9 @@ function drawMaze(){
         for(let x = 0; x < maze[y].length; x++){
 
         if(maze[y][x] === 0){
-            ctx.drawImage(wall,x*tileSize,y*tileSize,tileSize,tileSize);
+            ctx.drawImage(kasse,x*tileSize,y*tileSize,tileSize,tileSize);
         }else if(maze[y][x] === 2){
-             ctx.drawImage(road,x*tileSize,y*tileSize,tileSize,tileSize);
+             ctx.drawImage(sand,x*tileSize,y*tileSize,tileSize,tileSize);
         }else if(maze[y][x] === 1){
             playerPosition.x = x; 
             playerPosition.y = y; 
@@ -272,15 +306,15 @@ function drawMaze(){
         }else if(maze[y][x] === 3){   
             enemyPosition.x = x; 
             enemyPosition.y = y; 
-            ctx.drawImage(trap,x*tileSize,y*tileSize,tileSize,tileSize);
+            ctx.drawImage(bot1,x*tileSize,y*tileSize,tileSize,tileSize);
           }else if(maze[y][x] === 5){
-         ctx.drawImage(trap2,x*tileSize,y*tileSize,tileSize,tileSize);
+         ctx.drawImage(bot2,x*tileSize,y*tileSize,tileSize,tileSize);
           }else if(maze[y][x] === 6){
-         ctx.drawImage(trap3,x*tileSize,y*tileSize,tileSize,tileSize);
+         ctx.drawImage(bot3,x*tileSize,y*tileSize,tileSize,tileSize);
           }else if(maze[y][x] === 7){
-         ctx.drawImage(trap4,x*tileSize,y*tileSize,tileSize,tileSize);
+         ctx.drawImage(bot4,x*tileSize,y*tileSize,tileSize,tileSize);
         }else if(maze[y][x] === 4){
-            ctx.drawImage(finish,x*tileSize,y*tileSize,tileSize,tileSize);
+            ctx.drawImage(girl,x*tileSize,y*tileSize,tileSize,tileSize);
         }
       }
     }
@@ -302,7 +336,7 @@ window.addEventListener("keydown", (e)=>{
             maze[playerPosition.y] [playerPosition.x ] = 2 // Players gamle postion
             drawMaze();
             walk();
-            audio.play();
+            audio.pause();
            
          
     } 
@@ -364,9 +398,11 @@ window.addEventListener("keydown", (e)=>{
             walk()
         }
          else if (maze[playerPosition.y +1 ] [playerPosition.x  ] === 4){
+            gameOver()
             alert ("Tillyke du har vundet!");
-            playgirl ();
-            audio.pause()
+            //playgirl ();
+            //audio.pause()
+            
         }
 
         else if (maze[playerPosition.y +1] [playerPosition.x ] === 3){
